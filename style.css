@@ -1,67 +1,55 @@
-/* --- Estilos Generales --- */
-
+/* --- ESTILOS GENERALES --- */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-
 body {
     margin: 0;
-    font-family: 'Comic Neue', sans-serif; /* Fuente por defecto para toda la página */
-    background-color: #f0f0f0; /* Un fondo gris claro para que el menú resalte */
+    font-family: 'Comic Neue', sans-serif;
+    background-color: #f0f0f0;
 }
 
-/* --- El Contenedor del Header --- */
+/* --- HEADER Y NAVEGACIÓN --- */
 .main-header {
-    background-color: #ffd900; /* Un amarillo brillante, típico de cómics */
+    background-color: #ffd900;
     padding: 10px 20px;
-    border-bottom: 4px solid #000; /* Borde grueso negro, como el panel de una viñeta */
-    
-    /* --- ¡LA MAGIA PARA DEJARLO FIJO! --- */
-    position: fixed; /* Lo saca del flujo normal de la página */
-    top: 0;          /* Lo pega en la parte de arriba */
+    border-bottom: 4px solid #000;
+    position: fixed;
+    top: 0;
     left: 0;
-    width: 100%;     /* Hace que ocupe todo el ancho */
-    z-index: 1000;   /* Se asegura que esté por encima de todo */
-	background-image: radial-gradient(#e6c300 20%, transparent 21%);
+    width: 100%;
+    z-index: 1000;
+    background-image: radial-gradient(#e6c300 20%, transparent 21%);
     background-size: 10px 10px;
 }
 
-/* --- La Barra de Navegación Interior --- */
 .main-nav {
-    display: flex; /* Pone el logo y los links en una línea */
-    justify-content: space-between; /* Empuja el logo a la izquierda y los links a la derecha */
-    align-items: center; /* Centra verticalmente los elementos */
-    max-width: 1200px; /* Evita que se estire demasiado en pantallas grandes */
-    margin: 0 auto; /* Centra el contenido del nav */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* --- Estilo del Logo "HANT" --- */
 .logo {
-    font-family: 'Bangers', cursive; /* Aplicamos la fuente de título */
-    font-size: 2.5rem; /* Tamaño grande y llamativo (40px) */
+    font-family: 'Bangers', cursive;
+    font-size: 2.5rem;
     color: #000;
     text-decoration: none;
-    text-shadow: 2px 2px #fff; /* Sombra blanca para darle un efecto "pop" */
-	z-index: 10;
-
-    /* ▼▼ AÑADE ESTA LÍNEA ▼▼ */
+    text-shadow: 2px 2px #fff;
+    z-index: 10;
     transition: transform 0.6s ease-in-out;
 }
+
 .spin-logo {
-    /* Gira 360 grados en el eje Y (horizontalmente) */
     transform: rotateY(360deg);
 }
 
-/* ================================================== */
-/* ========= NUEVO: ESTILOS PARA MÓVIL ============= */
-/* ================================================== */
-
-/* --- El Botón de Hamburguesa --- */
+/* --- MENÚ MÓVIL (HAMBURGUESA Y PANEL) --- */
 .hamburger-button {
-    display: flex; /* Por defecto se mostrará en móvil */
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
@@ -70,7 +58,7 @@ body {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 10; /* Para que esté por encima del menú */
+    z-index: 10;
 }
 
 .hamburger-bar {
@@ -81,21 +69,10 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-/* --- Animación del Botón a "X" --- */
-.hamburger-button.active .hamburger-bar:nth-child(1) {
-    transform: translateY(11px) rotate(45deg);
-}
-.hamburger-button.active .hamburger-bar:nth-child(2) {
-    opacity: 0;
-}
-.hamburger-button.active .hamburger-bar:nth-child(3) {
-    transform: translateY(-11px) rotate(-45deg);
-}
+.hamburger-button.active .hamburger-bar:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+.hamburger-button.active .hamburger-bar:nth-child(2) { opacity: 0; }
+.hamburger-button.active .hamburger-bar:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
 
-
-
-/* --- Estilo de la Lista de Links --- */
-/* --- Estilo del Menú Desplegable (inicialmente oculto) --- */
 .menu-links {
     list-style: none;
     margin: 0;
@@ -106,38 +83,29 @@ body {
     height: 100%;
     width: 80%;
     max-width: 400px;
-    
-    /* ¡NUEVO FONDO DE PUNTOS ESTILO CÓMIC! */
     background-color: #e62e2e;
-    background-image: radial-gradient(#000 15%, transparent 16%),
-                      radial-gradient(#000 15%, transparent 16%);
+    background-image: radial-gradient(#000 15%, transparent 16%), radial-gradient(#000 15%, transparent 16%);
     background-size: 15px 15px;
     background-position: 0 0, 7.5px 7.5px;
     border-left: 4px solid #000;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    /* Animación de entrada MÁS dinámica */
     transform: translateX(100%) rotate(10deg);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Transición con "rebote" */
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-/* --- Estado ACTIVO del menú desplegable (cuando se muestra) --- */
 .menu-links.active {
-    transform: translateX(0) scale(1); /* Vuelve a su posición y tamaño original */
+    transform: translateX(0) rotate(0);
     opacity: 1;
     visibility: visible;
 }
 
-
-
 .menu-links li {
-     margin: 45px 0; ; /* Espacio entre cada link */
+    margin: 45px 0;
 }
 
 .menu-links a {
@@ -147,7 +115,7 @@ body {
     padding: 15px 30px;
     background-color: #000;
     color: #ffd900;
-    border: 3px solid #fff; /* Borde blanco para que resalte sobre los puntos */
+    border: 3px solid #fff;
     border-radius: 5px;
     box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
     transition: transform 0.2s ease;
@@ -156,61 +124,175 @@ body {
 
 .menu-links a:hover {
     color: #fff;
-    transform: rotate(3deg) scale(1.1); /* Efecto de crecimiento y giro */
+    transform: rotate(3deg) scale(1.1);
 }
 
-/* ======================================================= */
-/* ====== NUEVO: ESTILOS PARA TABLET Y ESCRITORIO ======== */
-/* ======================================================= */
-/* Media Query: Se aplica solo si la pantalla mide 768px o más */
+/* --- SECCIÓN HERO MULTIPANEL (MÓVIL PRIMERO) --- */
 
+.hero-kapow {
+    padding: 100px 15px 50px 15px;
+    background-color: #0078f0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.hero-grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Una sola columna para móvil */
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    border: 4px solid #000;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
+}
+
+.hero-panel {
+    border: 3px solid #000;
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* --- Estilos específicos de cada panel --- */
+
+.panel-1 { /* Panel de la Imagen */
+    background-color: #fce1f0; /* Fondo rosado */
+    padding: 0;
+}
+.panel-1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* La imagen cubre el panel sin deformarse */
+}
+
+.panel-2 { /* Panel de la Explosión */
+    background-color: #e62e2e;
+    background-image: radial-gradient(#000 15%, transparent 16%), radial-gradient(#000 15%, transparent 16%);
+    background-size: 10px 10px;
+    background-position: 0 0, 5px 5px;
+}
+.panel-2 .hero-container {
+    position: relative;
+    width: 100%;
+}
+.panel-2 .explosion-svg svg {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto;
+}
+.panel-2 .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+.panel-2 .hero-title-kapow {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(20px, 6vw, 24px); /* Fuente responsiva: min, ideal, max */
+    color: #000;
+    line-height: 1;
+    margin: 0;
+    transform: rotate(-5deg);
+}
+
+.panel-3 { /* Panel del Subtítulo y Botón */
+    background-color: #ffd900;
+    gap: 15px;
+}
+.panel-3 .hero-subcontent {
+    margin-top: 0;
+}
+.panel-3 .hero-subtitle {
+    color: #000;
+    text-shadow: none;
+    font-size: clamp(16px, 4vw, 18px);
+    font-weight: 700;
+    margin: 0;
+}
+.panel-3 .cta-button {
+    font-size: clamp(22px, 5vw, 26px);
+    padding: 8px 20px;
+}
+
+.panel-4 { /* Panel de detalle negro */
+    background-color: #000;
+    min-height: 50px;
+}
+
+
+/* --- AJUSTES PARA ESCRITORIO (MEDIA QUERY) --- */
 @media (min-width: 768px) {
-    
-    /* 1. Ocultamos el botón de hamburguesa en pantallas grandes */
+    /* Ocultar botón hamburguesa y mostrar menú normal */
     .hamburger-button {
         display: none;
     }
-
-    /* 2. Devolvemos al menú su estilo original de escritorio */
     .menu-links {
         position: static;
         flex-direction: row;
         height: auto;
         width: auto;
-        background-color: transparent;
+        background: none;
         border-left: none;
-        
-        /* Reseteamos las transformaciones y la visibilidad */
         transform: none;
         opacity: 1;
         visibility: visible;
     }
-
     .menu-links li {
-        margin: 0 0 0 20px; /* Margen solo a la izquierda */
+        margin: 0 0 0 20px;
+    }
+    .menu-links a {
+        background-color: #000;
+        color: #ffd900;
+        font-family: 'Bangers', cursive;
+        font-size: 1.5rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 3px solid #000;
+        transform: rotate(-2deg);
+        transition: all 0.2s ease-in-out;
+        box-shadow: 3px 3px 0px #e62e2e;
+    }
+    .menu-links a:hover {
+        background-color: #000;
+        color: #fff;
+        transform: rotate(2deg) scale(1.1);
+        box-shadow: 5px 5px 0px #e62e2e;
     }
 
-    .menu-links a {
-    background-color: #000;
-    color: #ffd900; /* El color del texto será el amarillo del header */
-    font-family: 'Bangers', cursive; /* Usamos la fuente más gruesa para este estilo */
-    font-size: 1.5rem; /* Un poco más grandes */
-    text-shadow: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 3px solid #000;
-    
-    /* ¡Le damos un ángulo para un look dinámico! */
-    transform: rotate(-2deg);
-    transition: all 0.2s ease-in-out;
-    box-shadow: 3px 3px 0px #e62e2e; /* Sombra roja */
-}
+    /* --- Ajustes del Grid del Hero para Escritorio --- */
+    .hero-grid-container {
+        grid-template-columns: 0.8fr 1.2fr 1fr;
+        grid-template-rows: 1fr 1.5fr 1fr;
+        gap: 15px;
+        width: 100%;
+        height: 80vh;
+        min-height: 550px;
+    }
+    .panel-1 { grid-column: 1 / 2; grid-row: 1 / 3; }
+    .panel-2 { grid-column: 2 / 4; grid-row: 1 / 2; }
+    .panel-3 { grid-column: 2 / 3; grid-row: 2 / 4; }
+    .panel-4 { grid-column: 3 / 4; grid-row: 2 / 4; }
 
-.menu-links a:hover {
-    background-color: #000;
-    color: #fff;
-    /* Al pasar el mouse, se agranda y se endereza un poco */
-    transform: rotate(2deg) scale(1.1);
-    box-shadow: 5px 5px 0px #e62e2e;
-}
+    /* Ajustes de contenido para escritorio */
+    .panel-2 .hero-title-kapow {
+        font-size: clamp(28px, 4vw, 44px);
+    }
+    .panel-3 .hero-subtitle {
+        font-size: clamp(16px, 1.5vw, 22px);
+    }
+    .panel-3 .cta-button {
+        padding: 10px 30px;
+        font-size: clamp(26px, 2vw, 32px);
+    }
 }
