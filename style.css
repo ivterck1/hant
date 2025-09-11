@@ -480,4 +480,113 @@ body {
 
 .manifesto-item:hover .fa-bolt-lightning {
     animation: flash 0.6s infinite;
+
+}
+
+/* ======================================================= */
+/* ================= SECCIÓN CATÁLOGO ==================== */
+/* ======================================================= */
+
+.catalogo-section {
+    padding: 60px 15px;
+    background-color: #f0f0f0;
+}
+
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.proyecto-card {
+    position: relative; /* Base para el overlay */
+    border: 4px solid #000;
+    overflow: hidden; /* Oculta lo que se salga (el bocadillo, la imagen ampliada) */
+    cursor: pointer;
+    box-shadow: 8px 8px 0 #0078f0; /* Sombra azul */
+}
+
+.proyecto-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* --- El Overlay que aparece al hacer Hover --- */
+.proyecto-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(230, 46, 46, 0.85); /* Rojo semitransparente */
+    background-image: radial-gradient(#000 15%, transparent 16%);
+    background-size: 10px 10px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.4s ease;
+}
+
+/* --- El Bocadillo de Diálogo --- */
+.speech-bubble {
+    position: relative;
+    background: #fff;
+    border: 3px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    
+    opacity: 0; /* Oculto por defecto */
+    transform: translateY(20px); /* Empieza un poco abajo */
+    transition: all 0.4s ease 0.2s; /* La animación empieza 0.2s después del overlay */
+}
+
+/* La "colita" del bocadillo, creada con CSS */
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -15px; /* Lo posicionamos debajo de la caja */
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid transparent;
+    border-top-color: #000; /* Esto crea el triángulo */
+}
+
+.speech-bubble h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 28px;
+    margin: 0 0 10px 0;
+    color: #000;
+}
+
+.speech-bubble a {
+    font-family: 'Comic Neue', sans-serif;
+    font-weight: 700;
+    color: #e62e2e;
+    text-decoration: none;
+    font-size: 18px;
+}
+.speech-bubble a:hover {
+    text-decoration: underline;
+}
+
+
+/* --- LA MAGIA DEL HOVER --- */
+
+.proyecto-card:hover img {
+    transform: scale(1.1); /* Hacemos un ligero zoom a la imagen */
+}
+
+.proyecto-card:hover .proyecto-overlay {
+    opacity: 1; /* Mostramos el overlay */
+}
+
+.proyecto-card:hover .speech-bubble {
+    opacity: 1; /* Mostramos el bocadillo */
+    transform: translateY(0); /* Lo movemos a su posición original */
 }
