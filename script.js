@@ -51,19 +51,29 @@ setInterval(() => {
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        // Previene el salto instantáneo por defecto del navegador.
         e.preventDefault();
+		
+		      // ▼▼ LÍNEAS AÑADIDAS ▼▼
+        // Ocultamos el menú y revertimos el ícono de la hamburguesa
+        menuLinks.classList.remove('active');
+        hamburgerButton.classList.remove('active');
+        // ▲▲ FIN DE LÍNEAS AÑADIDAS ▲▲
+
 
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
 
         if (targetElement) {
+            // Calcula la altura de la cabecera para que no tape el título de la sección.
             const headerHeight = document.querySelector('.main-header').offsetHeight;
             const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
             const offsetPosition = elementPosition - headerHeight;
 
+            // Le dice a la ventana que se desplace a la posición calculada con una animación suave.
             window.scrollTo({
                 top: offsetPosition,
-                behavior: "smooth"
+                behavior: "smooth" // Esta es la propiedad clave para la animación.
             });
         }
     });
