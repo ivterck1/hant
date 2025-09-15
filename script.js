@@ -29,3 +29,42 @@ logo.addEventListener('transitionend', () => {
     // ...y quitamos la clase para que esté listo para el próximo clic.
     logo.classList.remove('spin-logo');
 });
+
+// --- LÓGICA PARA EL BOCADILLO DEL BOTÓN DE WHATSAPP ---
+
+const whatsappMensaje = document.querySelector('.whatsapp-mensaje');
+
+// Hacemos que la función se ejecute cada 10 segundos
+setInterval(() => {
+    
+    // Mostramos el bocadillo añadiendo la clase 'show'
+    whatsappMensaje.classList.add('show');
+
+    // Después de 4 segundos, lo ocultamos quitando la clase
+    setTimeout(() => {
+        whatsappMensaje.classList.remove('show');
+    }, 4000); // 4000 milisegundos = 4 segundos
+
+}, 10000); // 10000 milisegundos = 10 segundos
+
+
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            const headerHeight = document.querySelector('.main-header').offsetHeight;
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerHeight;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+    });
+});
